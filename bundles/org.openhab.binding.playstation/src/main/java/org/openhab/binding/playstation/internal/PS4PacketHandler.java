@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2020 Contributors to the openHAB project
+ * Copyright (c) 2010-2021 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -12,7 +12,6 @@
  */
 package org.openhab.binding.playstation.internal;
 
-import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
@@ -66,7 +65,7 @@ public class PS4PacketHandler {
         return packet;
     }
 
-    static byte[] makeSearchPacket() {
+    public static byte[] makeSearchPacket() {
         StringBuilder packet = new StringBuilder("SRCH * HTTP/1.1\n");
         packet.append(DDP_VERSION);
         return packet.toString().getBytes(StandardCharsets.UTF_8);
@@ -106,7 +105,7 @@ public class PS4PacketHandler {
         ByteBuffer packet = newPacketOfSize(28, PS4Command.HELLO_REQ);
         packet.putInt(REQ_VERSION);
         packet.put(new byte[16]); // Seed = 16 bytes
-        ((Buffer) packet).rewind();
+        packet.rewind();
         return packet;
     }
 

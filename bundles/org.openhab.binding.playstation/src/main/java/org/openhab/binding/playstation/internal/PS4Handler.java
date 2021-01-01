@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2020 Contributors to the openHAB project
+ * Copyright (c) 2010-2021 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -106,6 +106,9 @@ public class PS4Handler extends BaseThingHandler {
     @Override
     public void handleConfigurationUpdate(Map<String, Object> configurationParameters) {
         super.handleConfigurationUpdate(configurationParameters);
+        if (config.applicationListCount == 0) {
+            stateOptions.clear();
+        }
         figureOutLocalIP();
         SocketChannelHandler scHandler = socketChannelHandler;
         if (!config.pairingCode.isEmpty() && (scHandler == null || !loggedIn)) {

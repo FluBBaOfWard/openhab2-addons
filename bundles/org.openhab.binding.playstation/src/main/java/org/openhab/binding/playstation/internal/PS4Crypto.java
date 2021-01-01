@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2020 Contributors to the openHAB project
+ * Copyright (c) 2010-2021 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -12,7 +12,6 @@
  */
 package org.openhab.binding.playstation.internal;
 
-import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.security.InvalidAlgorithmParameterException;
@@ -93,7 +92,6 @@ public class PS4Crypto {
 
     int parseHelloResponsePacket(ByteBuffer rBuffer) {
         int result = -1;
-        ((Buffer) rBuffer).rewind();
         rBuffer.rewind();
         final int buffSize = rBuffer.remaining();
         final int size = rBuffer.getInt();

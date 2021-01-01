@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2020 Contributors to the openHAB project
+ * Copyright (c) 2010-2021 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -35,6 +35,7 @@ import org.eclipse.smarthome.core.net.NetworkAddressService;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingUID;
 import org.eclipse.smarthome.core.util.HexUtils;
+import org.openhab.binding.playstation.internal.PS4PacketHandler;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -114,14 +115,14 @@ public class PlayStationDiscovery extends AbstractDiscoveryService {
             InetAddress bcAddress = getBroadcastAdress();
 
             // send discover
-            byte[] discover = "SRCH * HTTP/1.1\ndevice-discovery-protocol-version:00020020\n".getBytes();
+            byte[] discover = PS4PacketHandler.makeSearchPacket();
             DatagramPacket packet = new DatagramPacket(discover, discover.length, bcAddress, DEFAULT_BROADCAST_PORT);
             socket.send(packet);
             logger.debug("Discover message sent: '{}'", discover);
 
             // wait for responses
             while (true) {
-                byte[] rxbuf = new byte[256];
+                byte[] rxbuf = new byte[512];
                 packet = new DatagramPacket(rxbuf, rxbuf.length);
                 try {
                     socket.receive(packet);

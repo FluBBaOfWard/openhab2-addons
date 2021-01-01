@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2020 Contributors to the openHAB project
+ * Copyright (c) 2010-2021 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -32,6 +32,7 @@ enum PS4ErrorStatus {
     STATUS_DO_LOGIN(0x06, "Log in on PS4."),
     STATUS_MAX_USERS(0x07, "Max users logged in on PS4."),
     STATUS_RESTART_APP(0x08, "Can not log in, restart plugin."),
+    STATUS_UNKNOWN_1(0x09, "Unknown error status! (9)"),
     STATUS_COMMAND_NOT_GOOD(0x0b, "Command not good!"),
     STATUS_GAME_NOT_STARTED(0x0c, "Game not started!"), // Game/app not installed or other game running.
     STATUS_NOT_PAIRED(0x0e, "Not paired to PS4!"), // Not allowed?
